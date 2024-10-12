@@ -15,6 +15,26 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public User addUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(int id) {
+        return userRepository.findById((long) id).orElse(null);
+    }
+
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(int id) {
+        userRepository.deleteById((long) id);
+    }
+
     public User createUser(UserCreationRequest request) {
         // Kiểm tra xem email đã tồn tại chưa
         Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
